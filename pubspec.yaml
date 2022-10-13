@@ -47,7 +47,9 @@ dependencies:
   sign_button: ^2.0.2
   lottie: ^1.4.3
   google_nav_bar: ^5.0.6
-  
+  firebase_core: ^1.24.0
+  firebase_auth: ^3.11.2
+  cloud_firestore: ^3.5.1
  
  
 

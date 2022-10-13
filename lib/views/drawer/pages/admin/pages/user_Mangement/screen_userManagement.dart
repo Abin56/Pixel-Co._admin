@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pixels_admin/model/usermodel.dart';
 import 'package:pixels_admin/views/color/color.dart';
 import 'package:pixels_admin/views/widget/neumorphism_widget.dart';
 
@@ -21,40 +24,53 @@ class ScreenUserManagement extends StatelessWidget {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: ListView.separated(
-          itemBuilder: (context, index) {
-            return NeumorphismWidget(
-              blurRadius: 15,
-              color: kwhite,
-              height: 93.h,
-              padding: 20,
-              borderRadius: BorderRadius.circular(30),
-              widget: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    radius: 40,
+          child: StreamBuilder(
+        stream:
+            FirebaseFirestore.instance.collection('allUserData').snapshots(),
+        builder: (context,
+            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+          if (snapshot.hasData) {
+            return ListView.separated(
+              itemBuilder: (context, index) {
+                final data =
+                    UserModel.fromJson(snapshot.data!.docs[index].data());
+                return NeumorphismWidget(
+                  blurRadius: 15,
+                  color: kwhite,
+                  height: 93.h,
+                  padding: 20,
+                  borderRadius: BorderRadius.circular(30),
+                  widget: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircleAvatar(
+                        radius: 40,
+                        child: Image.network(data.photoUrl),
+                      ),
+                      Text(
+                        data.name,
+                        style: GoogleFonts.montserrat(
+                            color: backgroundColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      MyCustomWidget()
+                    ],
                   ),
-                  Text(
-                    'User Name',
-                    style: GoogleFonts.montserrat(
-                        color: backgroundColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  MyCustomWidget()
-                ],
-              ),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return SizedBox(
+                  height: 24.h,
+                );
+              },
+              itemCount: snapshot.data!.docs.length,
             );
-          },
-          separatorBuilder: (context, index) {
-            return SizedBox(
-              height: 24.h,
-            );
-          },
-          itemCount: 10,
-        ),
-      ),
+          } else {
+            return Text('No More Data');
+          }
+        },
+      )),
     );
   }
 }

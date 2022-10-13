@@ -1,13 +1,21 @@
+// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pixels_admin/firebase_options.dart';
+import 'package:pixels_admin/views/login_page/login_screen.dart';
 import 'package:pixels_admin/views/splash_screen/splash_screen.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await ScreenUtil.ensureScreenSize();
-
   runApp(const MyApp());
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await ScreenUtil.ensureScreenSize();
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +41,7 @@ class MyApp extends StatelessWidget {
                 bodyText2: TextStyle(color: Colors.black),
               ),
             ),
-            home: const SplashScreen(),
+            home: const ScreenLogin(),
             debugShowCheckedModeBanner: false,
           );
         });

@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,9 +11,28 @@ import '../../drawer/drawer.dart';
 
 class ScreenSignIn extends StatelessWidget {
   const ScreenSignIn({super.key});
+  Future<User?> loginUsingEmailPassword(
+      {required String email,
+      required String password,
+      required BuildContext context}) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'User not Found') {
+        log("No user found for that email");
+      }
+    }
+    return user;
+  }
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -51,6 +72,7 @@ class ScreenSignIn extends StatelessWidget {
                         color: Colors.grey),
                   ),
                   TextFormField(
+                    controller: _emailController,
                     decoration: const InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -72,6 +94,7 @@ class ScreenSignIn extends StatelessWidget {
                         color: Colors.grey),
                   ),
                   TextFormField(
+                    controller: _passwordController,
                     decoration: const InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -97,8 +120,19 @@ class ScreenSignIn extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: ElevatedButton(
-                  onPressed: () {
-                    Get.offAll(DrawerWidget());
+                  onPressed: () async {
+                    log('Preseeddddddddddddd');
+                    User? user = await loginUsingEmailPassword(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                        context: context);
+                    log(user.toString());
+                    if (user != null) {
+                      Get.to(DrawerWidget());
+                      log(FirebaseAuth
+                          .instance.currentUser!.metadata.lastSignInTime
+                          .toString());
+                    }
                   },
                   // ignore: sort_child_properties_last
                   child: const Text(
@@ -113,55 +147,57 @@ class ScreenSignIn extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50))),
                 ),
               ),
-              SizedBox(
-                height: 210.h,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text(
-                      'Or you can join with',
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SignInButton.mini(
-                            buttonType: ButtonType.facebook, onPressed: () {}),
-                        SignInButton.mini(
-                          buttonType: ButtonType.google,
-                          onPressed: () {},
-                          elevation: 1,
-                        ),
-                        SignInButton.mini(
-                            buttonType: ButtonType.twitter, onPressed: () {}),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 25.h,
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: "Don't have an Account? Click here ",
-                        style: TextStyle(color: Colors.black),
-                        children: [
-                          TextSpan(
-                              onEnter: (event) => log('Wornds'),
-                              text: 'Register Now',
-                              style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black))
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              // SizedBox(
+              //   height: 210.h,
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //     children: [
+              //       const Text(
+              //         'Or you can join with',
+              //         style: TextStyle(
+              //             color: Colors.black, fontWeight: FontWeight.bold),
+              //       ),
+              //       Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           SignInButton.mini(
+              //               buttonType: ButtonType.facebook, onPressed: () {}),
+              //           SignInButton.mini(
+              //             buttonType: ButtonType.google,
+              //             onPressed: () {},
+              //             elevation: 1,
+              //           ),
+              //           SignInButton.mini(
+              //               buttonType: ButtonType.twitter, onPressed: () {}),
+              //         ],
+              //       ),
+              //       SizedBox(
+              //         height: 25.h,
+              //       ),
+              //       RichText(
+              //         text: TextSpan(
+              //           text: "Don't have an Account? Click here ",
+              //           style: TextStyle(color: Colors.black),
+              //           children: [
+              //             TextSpan(
+              //                 onEnter: (event) => log('Wornds'),
+              //                 text: 'Register Now',
+              //                 style: TextStyle(
+              //                     decoration: TextDecoration.underline,
+              //                     fontWeight: FontWeight.bold,
+              //                     color: Colors.black))
+              //           ],
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // )
             ],
           ),
         ),
       ),
     );
   }
+  //Login Function>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 }

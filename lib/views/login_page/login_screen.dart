@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pixels_admin/views/login_page/widget/sign_up.dart';
+
 import 'package:pixels_admin/views/login_page/widget/sing_in.dart';
 
 class ScreenLogin extends StatelessWidget {
@@ -48,7 +48,7 @@ class ScreenLogin extends StatelessWidget {
                 },
                 // ignore: sort_child_properties_last
                 child: const Text(
-                  'SIGN IN WITH GOOGLE',
+                  'Login ',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -60,22 +60,22 @@ class ScreenLogin extends StatelessWidget {
               SizedBox(
                 height: 27.h,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Get.offAll(ScreenSignUp());
-                },
-                // ignore: sort_child_properties_last
-                child: const Text(
-                  'CREATE AN ACCOUNT',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-                style: ElevatedButton.styleFrom(
-                    // ignore: deprecated_member_use
-                    primary: const Color.fromARGB(255, 255, 153, 0),
-                    fixedSize: const Size(400, 70),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50))),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     // Get.offAll(ScreenSignUp());
+              //   },
+              //   // ignore: sort_child_properties_last
+              //   child: const Text(
+              //     'CREATE AN ACCOUNT',
+              //     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              //   ),
+              //   style: ElevatedButton.styleFrom(
+              //       // ignore: deprecated_member_use
+              //       primary: const Color.fromARGB(255, 255, 153, 0),
+              //       fixedSize: const Size(400, 70),
+              //       shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(50))),
+              // ),
             ],
           ),
         ),
