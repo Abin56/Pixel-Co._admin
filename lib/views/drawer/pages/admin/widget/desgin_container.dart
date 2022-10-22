@@ -17,52 +17,59 @@ import 'package:pixels_admin/views/widget/neumorphism_widget.dart';
 // ignore: must_be_immutable
 class ContainerWidget extends StatelessWidget {
   int index;
+  var color;
 
   // ignore: prefer_typing_uninitialized_variables
 
   ContainerWidget({
     required this.index,
+    required this.color,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-            Get.to(screen[index]);
-          },
-          child: NeumorphismWidget(
-            blurRadius: 15,
-            color: kwhite,
-            height: 100.h,
-            padding: 20,
-            borderRadius: BorderRadius.circular(30),
-            widget: Row(
-              children: [
-                NeumorphismCircleWidget(
-                  height: 100.h,
-                  padding: 10,
-                  widget: Icon(
-                    icons[index],
-                    size: 28,
-                    color: Colors.black,
-                  ),
-                ),
-                const SizedBox(
-                  width: 14,
-                ),
-                Text(
-                  textstring[index],
-                  style: GoogleFonts.montserrat(
-                      fontSize: 18, fontWeight: FontWeight.w700),
-                ),
-              ],
+    return GestureDetector(
+      onTap: () => Get.to(screen[index]),
+      child: Container(
+        height: 500,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: listcolors[color].first.withOpacity(0.4),
+              blurRadius: 8,
+              spreadRadius: 2,
+              offset: const Offset(4, 4),
             ),
+          ],
+          gradient: LinearGradient(
+              colors: listcolors[color],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(22),
           ),
-        )
-      ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icons[index],
+              size: 60,
+              color: Colors.white,
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              textstring[index],
+              style: GoogleFonts.montserrat(
+                  fontSize: 14, fontWeight: FontWeight.w700),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -85,8 +92,8 @@ List<IconData> icons = [
   Icons.theaters_rounded,
   Icons.admin_panel_settings_outlined
 ];
-List screen = const [
-  ScreenUserManagement(),
+List screen = [
+   ScreenUserManagement(),
   ScreenProductMangement(),
   ScreenStatitcsAndEarnings(),
   ScreenOfferManagement(),
@@ -94,6 +101,25 @@ List screen = const [
   ScreenCoupenManagement(),
   ScreenAdminProfile(),
 ];
+//  GestureDetector(
+//           onTap: () {
+//             Get.to(screen[index]);
+//           },
+//           child: Row(
+//             children: [
+//               Icon(
+//                 icons[index],
+//                 size: 28,
+//                 color: Colors.white,
+//               ),
+//               Text(
+//                 textstring[index],
+//                 style: GoogleFonts.montserrat(
+//                     fontSize: 10, fontWeight: FontWeight.w700),
+//               ),
+//             ],
+//           ),
+//         )
 // Container(
 //         decoration: BoxDecoration(
 //           boxShadow: [

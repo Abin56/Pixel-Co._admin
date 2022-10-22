@@ -4,8 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pixels_admin/views/color/color.dart';
+import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/add_product_details.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/product_details.dart';
+import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/upload_imagetofirebase.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/widget/desgin_container.dart';
 
 class ScreenProductMangement extends StatelessWidget {
@@ -34,16 +39,18 @@ class ScreenProductMangement extends StatelessWidget {
                       sigmaY: 40.0,
                     ),
                     child: Container(
-                      height: 100,
+                      height: 100.h,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.3),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(22),
-                        ),
-                        border: Border.all(
-                          width: 1.2,
-                          color: Colors.white.withOpacity(1),
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(color: kwhite.withOpacity(0.13)),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            kwhite.withOpacity(0.10),
+                            kwhite.withOpacity(0.10)
+                          ],
                         ),
                       ),
                       child: Row(
@@ -55,19 +62,44 @@ class ScreenProductMangement extends StatelessWidget {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text(
-                                'Camera',
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 25, fontWeight: FontWeight.w700),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Name :',
+                                    style: GoogleFonts.montserrat(
+                                        color: Colors.grey,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                  Text(
+                                    'Camera',
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                'Cateorgy:        ',
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 16, fontWeight: FontWeight.w700),
-                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Cateorgy:',
+                                    style: GoogleFonts.montserrat(
+                                        color: Colors.grey,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                  Text(
+                                    'Camera',
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ],
+                              )
                             ],
                           ),
-                          Icon(Icons.arrow_forward_ios_outlined)
+                          const Icon(
+                              color: kwhite, Icons.arrow_forward_ios_outlined)
                         ],
                       ),
                     ),
@@ -82,6 +114,12 @@ class ScreenProductMangement extends StatelessWidget {
             );
           },
           itemCount: 10),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(UploadImageScreen());
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

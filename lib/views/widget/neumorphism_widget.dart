@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pixels_admin/views/color/color.dart';
 
 class NeumorphismWidget extends StatelessWidget {
   double height;
@@ -28,24 +29,16 @@ class NeumorphismWidget extends StatelessWidget {
         child: widget,
         padding: EdgeInsets.all(padding),
         decoration: BoxDecoration(
-          borderRadius: borderRadius,
-          color: Colors.grey[300],
-          // borderRadius: BorderRadius.circular(12),
-
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade500,
-              offset: const Offset(4, 4),
-              blurRadius: 15,
-              spreadRadius: 1,
-            ),
-            BoxShadow(
-              color: color,
-              offset: Offset(-4, -4),
-              blurRadius: blurRadius,
-              spreadRadius: 1,
-            ),
-          ],
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(width: 2, color: Colors.white.withOpacity(0.13)),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.white.withOpacity(0.10),
+              Colors.white.withOpacity(0.10)
+            ],
+          ),
         ),
       ),
     );
@@ -74,25 +67,17 @@ class NeumorphismCircleWidget extends StatelessWidget {
       child: widget,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
-        // borderRadius: borderRadius,
-        color: Colors.grey[300],
-        // borderRadius: BorderRadius.circular(12),
         shape: BoxShape.circle,
-
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade500,
-            offset: const Offset(4, 4),
-            blurRadius: 15,
-            spreadRadius: 1,
-          ),
-          const BoxShadow(
-            color: Colors.white,
-            offset: Offset(-4, -4),
-            blurRadius: 15,
-            spreadRadius: 1,
-          ),
-        ],
+        // borderRadius: BorderRadius.circular(30),
+        border: Border.all(width: 2, color: Colors.white.withOpacity(0.13)),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.white.withOpacity(0.10),
+            Colors.white.withOpacity(0.10)
+          ],
+        ),
       ),
     );
   }

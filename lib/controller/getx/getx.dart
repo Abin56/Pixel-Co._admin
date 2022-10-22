@@ -1,19 +1,23 @@
+
+
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
+// import 'package:image_picker/image_picker.dart';
 import 'package:pixels_admin/views/color/color.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/screen_admin.dart';
 import 'package:pixels_admin/views/home/screen_home.dart';
 
-import '../../views/chat/chat_screen.dart';
-import '../../views/delivery_screen/delivery_screen.dart';
-import '../../views/order_screen/orderlist_screen.dart';
-
 List<ScreenHiddenDrawer> pages = [];
 
 class Controllers extends GetxController {
+
+  // String? pickedImage;
+  // String? pickedimagefromGallery;
   @override
   void onInit() {
     drawerMenulist();
@@ -89,4 +93,6 @@ class Controllers extends GetxController {
     currentIndex = index;
     update();
   }
+
+ 
 }

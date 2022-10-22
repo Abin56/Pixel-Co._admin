@@ -16,16 +16,16 @@ class DrawerWidget extends StatelessWidget {
     homeController.onInit();
     return HiddenDrawerMenu(
       screens: pages,
-      backgroundColorMenu: const Color.fromARGB(255, 58, 58, 58),
+      backgroundColorMenu: Color.fromARGB(255, 0, 0, 0),
       initPositionSelected: 0,
       slidePercent: 80,
       contentCornerRadius: 40,
-      backgroundColorAppBar: Colors.grey[300],
+      backgroundColorAppBar: backgroundColor,
       styleAutoTittleName: GoogleFonts.poppins(
-          color: backgroundColor, fontSize: 25, fontWeight: FontWeight.w600),
+          color: kwhite, fontSize: 25, fontWeight: FontWeight.w600),
       leadingAppBar: Icon(
         Icons.menu,
-        color: backgroundColor,
+        color: kwhite,
       ),
     );
   }
