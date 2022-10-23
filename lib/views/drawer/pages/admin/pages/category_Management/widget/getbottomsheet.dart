@@ -30,8 +30,6 @@ getCategoryBottomSheet({
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-  
-
                 TextField(
                   cursorColor: backgroundColor,
                   controller: textController,

@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixels_admin/firebase_options.dart';
 import 'package:pixels_admin/views/drawer/drawer.dart';
-import 'package:pixels_admin/views/login_page/login_screen.dart';
-import 'package:pixels_admin/views/splash_screen/splash_screen.dart';
 import 'package:pixels_admin/views/widget/permission_gallery.dart';
 
 Future<void> main() async {

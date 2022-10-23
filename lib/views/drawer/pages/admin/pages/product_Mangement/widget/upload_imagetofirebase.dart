@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pixels_admin/controller/getx/getImage.dart';
 import 'package:pixels_admin/views/color/color.dart';
+import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/add_product_details.dart';
 
 class UploadImageScreen extends StatefulWidget {
   UploadImageScreen({super.key});
@@ -27,52 +28,8 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
         extendBody: true,
         body: Stack(
           children: [
-            Positioned(
-              top: -150,
-              left: -100,
-              child: Container(
-                height: 166,
-                width: 166,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white.withOpacity(0.0),
-                ),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 200,
-                    sigmaY: 200,
-                  ),
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    color: Colors.transparent,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 500,
-              child: Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color:
-                      const Color.fromARGB(255, 59, 10, 255).withOpacity(0.7),
-                ),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 200,
-                    sigmaY: 200,
-                  ),
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    color: Colors.transparent,
-                  ),
-                ),
-              ),
-            ),
+          const  Designone(),
+           const  DesignTwo(),
             SafeArea(
               child: Scaffold(
                 body: ListView(
@@ -235,6 +192,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
     // Get URL?????????????????????????
     final snapshot = await uploadTask!.whenComplete(() {});
     final urlDownload = await snapshot.ref.getDownloadURL();
+    Get.off(AddProductDetails(imagepath: urlDownload,));
     log("Download Link : $urlDownload");
     setState(() {
       uploadTask = null;
@@ -267,9 +225,76 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
             ),
           );
         } else {
-          return SizedBox(
+          return const SizedBox(
             height: 50,
           );
         }
       });
+}
+////////////////////////////////
+//////////////////////////////////
+class DesignTwo extends StatelessWidget {
+  const DesignTwo({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 500,
+      child: Container(
+        height: 200,
+        width: 200,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color:
+              const Color.fromARGB(255, 59, 10, 255).withOpacity(0.7),
+        ),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 200,
+            sigmaY: 200,
+          ),
+          child: Container(
+            height: 200,
+            width: 200,
+            color: Colors.transparent,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Designone extends StatelessWidget {
+  const Designone({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: -150,
+      left: -100,
+      child: Container(
+        height: 166,
+        width: 166,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white.withOpacity(0.0),
+        ),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 200,
+            sigmaY: 200,
+          ),
+          child: Container(
+            height: 200,
+            width: 200,
+            color: Colors.transparent,
+          ),
+        ),
+      ),
+    );
+  }
 }

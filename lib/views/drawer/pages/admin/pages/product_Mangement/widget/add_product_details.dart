@@ -1,15 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pixels_admin/controller/firebase/add_AllProduct.dart';
+import 'package:pixels_admin/model/add_allProductstofirebase.dart';
+import 'package:pixels_admin/model/category_model.dart';
+import 'package:pixels_admin/views/drawer/pages/admin/pages/category_Management/widget/getbottomsheet.dart';
+import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/screen_product_M.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/drop_down.dart';
 
 import '../../../../../../color/color.dart';
 import '../../../../../../core/const.dart';
 
 class AddProductDetails extends StatelessWidget {
-  const AddProductDetails({super.key});
+  final produtnameController = TextEditingController();
+  final priceController = TextEditingController();
+  final quantityController = TextEditingController();
+  final discriptionController = TextEditingController();
+  CategoryModel? categoryda;
+
+  final String imagepath;
+  AddProductDetails({required this.imagepath, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +36,11 @@ class AddProductDetails extends StatelessWidget {
           child: SingleChildScrollView(
             child: Stack(
               children: [
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                 ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 120,
-                      ),
-                      Text(
-                        "Add Product",
-                        style: GoogleFonts.montserrat(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ),
+                const AppBarProduct(),
                 Positioned(
                     top: 130,
                     child: Container(
@@ -55,33 +56,19 @@ class AddProductDetails extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                          height: 160,
-                          width: 160,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(120)),
-                              border: Border.all(
-                                  color: Color.fromARGB(255, 25, 205, 202))),
-                          child: CircleAvatar(
-                            radius: 100,
-                          )),
-                      ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.add_a_photo),
-                        label: Text('Add photo'),
-                        style: ButtonStyle(
-                          foregroundColor: MaterialStateProperty.all(kwhite),
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.black),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                      side: const BorderSide(
-                                          color: Color.fromARGB(
-                                              255, 25, 205, 202)))),
-                        ),
-                      )
+                        height: 160,
+                        width: 160,
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(120)),
+                            image: DecorationImage(
+                                image: NetworkImage(imagepath),
+                                fit: BoxFit.contain),
+                            border: Border.all(
+                                color:
+                                    const Color.fromARGB(255, 25, 205, 202))),
+                      ),
                     ],
                   ),
                 ),
@@ -98,6 +85,7 @@ class AddProductDetails extends StatelessWidget {
                       child: ListView(
                         children: [
                           TextFormField(
+                            controller: produtnameController,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
@@ -118,6 +106,7 @@ class AddProductDetails extends StatelessWidget {
                           kheight,
                           kheight,
                           TextFormField(
+                            controller: priceController,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
@@ -129,6 +118,7 @@ class AddProductDetails extends StatelessWidget {
                           ),
                           kheight,
                           TextFormField(
+                            controller: quantityController,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
@@ -141,26 +131,12 @@ class AddProductDetails extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: 30.w,
-                              ),
-                              Container(
-                                  width: 300,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.green, width: 0.5),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: const DropDownButton()),
-                            ],
-                          ),
-                          SizedBox(
+                          const DropDownButton(),
+                          const SizedBox(
                             height: 20,
                           ),
                           TextFormField(
+                            controller: discriptionController,
                             maxLines: 7,
                             decoration: InputDecoration(
                               labelText: "Discriptions",
@@ -186,10 +162,40 @@ class AddProductDetails extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: SizedBox(
-                              height: 70,
-                              width: 180,
+                              height: 60.h,
+                              width: 180.w,
                               child: TextButton.icon(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  // User? user =
+                                  //     FirebaseAuth.instance.currentUser;
+                                  final productName =
+                                      produtnameController.text.trim();
+                                  final price = priceController.text.trim();
+                                  final quantity =
+                                      quantityController.text.trim();
+                                  final discription =
+                                      discriptionController.text.trim();
+                                  ////////////////////////////
+                                  if (productName.isNotEmpty &&
+                                      price.isNotEmpty &&
+                                      quantity.isNotEmpty &&
+                                      discription.isNotEmpty) {
+                                    final addtoFireBase = AddProductModel(
+                                        id: '',
+                                        productImage: imagepath,
+                                        productName: productName,
+                                        price: price,
+                                        category: dropDownValue!,
+                                        quantity: quantity,
+                                        discription: discription,
+                                        available: true);
+                                    await AddProductDetailsToFireBase()
+                                        .addProductController(addtoFireBase);
+                                    Get.off(ScreenProductMangement());
+                                  } else {
+                                    return;
+                                  }
+                                },
                                 icon: const Icon(Icons.person_add),
                                 label: Text("Add Product",
                                     style: GoogleFonts.montserrat(
@@ -226,6 +232,44 @@ class AddProductDetails extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+//     selectDropList(context) async {
+//   return showModalBottomSheet(
+//     isScrollControlled: true,
+//     context: context,
+//     builder: (ctx) {
+//       // ignore: sized_box_for_whitespace
+//       return Container(
+//         height: 250.h,
+//         child: DropDownButton(categorydata: ),
+//       );
+//     },
+//   );
+// }
+}
+
+class AppBarProduct extends StatelessWidget {
+  const AppBarProduct({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 120.h,
+          ),
+          Text(
+            "Add Product",
+            style: GoogleFonts.montserrat(
+                fontSize: 30, fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }
