@@ -181,7 +181,6 @@ class AddProductDetails extends StatelessWidget {
                                       quantity.isNotEmpty &&
                                       discription.isNotEmpty) {
                                     final addtoFireBase = AddProductModel(
-                                        id: '',
                                         productImage: imagepath,
                                         productName: productName,
                                         price: price,
@@ -191,7 +190,8 @@ class AddProductDetails extends StatelessWidget {
                                         available: true);
                                     await AddProductDetailsToFireBase()
                                         .addProductController(addtoFireBase);
-                                    Get.off(ScreenProductMangement());
+                                  
+
                                   } else {
                                     return;
                                   }

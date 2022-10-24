@@ -1,11 +1,12 @@
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:pixels_admin/controller/getx/getx.dart';
-import 'package:pixels_admin/model/category_model.dart';
-import 'package:pixels_admin/views/drawer/pages/admin/pages/category_Management/widget/getbottomsheet.dart';
+import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/detail_product.dart';
+import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/edit_and_delete.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/upload_imagetofirebase.dart';
 import '../../../../../../model/add_allProductstofirebase.dart';
 import '../../../../../color/color.dart';
@@ -13,9 +14,11 @@ import '../../../../../color/color.dart';
 //
 
 class ScreenProductMangement extends StatelessWidget {
+  var id;
+
   final homecontroller = Get.put(Controllers());
 
-  ScreenProductMangement({super.key});
+  ScreenProductMangement({required this.id, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class ScreenProductMangement extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Category Management"),
+          title: const Text("All Product"),
           centerTitle: true,
           brightness: Brightness.dark),
       body: StreamBuilder(
@@ -58,20 +61,23 @@ class ScreenProductMangement extends StatelessWidget {
                           child: FadeInAnimation(
                             child: Center(
                               child: Padding(
-                                padding: const EdgeInsets.all(6),
+                                padding: const EdgeInsets.all(3),
                                 child: GestureDetector(
                                   onTap: () {
-                                    // log(homecontroller.imageList[index].toString());
-                                    // Get.offAll(
-                                    //   getCategoryBottomSheet(
-                                    //     context: context,
-                                    //     getimagePath: homecontroller.imageList[index],
-                                    //   ),
-                                    // );
+                                    var rnd = Random();
+                                    var r = 1 + rnd.nextInt(5 - 1);
+                                    Get.to(DetailScreenofProduct(
+                                        colorindex: r,
+                                        productname: data.productName,
+                                        image: data.productImage,
+                                        price: data.price,
+                                        category: data.category,
+                                        discription: data.discription,
+                                        quantity: data.quantity));
                                   },
                                   child: Container(
-                                    height: 400,
-                                    width: 200,
+                                    height: 400.h,
+                                    width: 200.w,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
                                       border: Border.all(
@@ -94,7 +100,7 @@ class ScreenProductMangement extends StatelessWidget {
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           CircleAvatar(
-                                            radius: 30,
+                                            radius: 33.r,
                                             backgroundColor: backgroundColor,
                                             backgroundImage:
                                                 NetworkImage(data.productImage),
@@ -102,7 +108,7 @@ class ScreenProductMangement extends StatelessWidget {
                                           Row(
                                             children: [
                                               const Text(
-                                                "Name :",
+                                                "Name: ",
                                                 style: TextStyle(
                                                     color: Colors.grey),
                                               ),
@@ -113,6 +119,9 @@ class ScreenProductMangement extends StatelessWidget {
                                                     fontSize: 13),
                                               ),
                                             ],
+                                          ),
+                                          SizedBox(
+                                            height: 1.h,
                                           ),
                                           Row(
                                             mainAxisAlignment:
@@ -140,6 +149,12 @@ class ScreenProductMangement extends StatelessWidget {
                                                     color: Color.fromARGB(
                                                         255, 23, 255, 31)),
                                               ),
+                                              SizedBox(
+                                                width: 40.w,
+                                              ),
+                                              EditandDelete(
+                                                id: data.id,
+                                              )
                                             ],
                                           ),
                                         ],

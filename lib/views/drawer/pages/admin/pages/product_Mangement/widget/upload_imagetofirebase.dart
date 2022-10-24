@@ -28,14 +28,14 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
         extendBody: true,
         body: Stack(
           children: [
-          const  Designone(),
-           const  DesignTwo(),
+            const Designone(),
+            const DesignTwo(),
             SafeArea(
               child: Scaffold(
                 body: ListView(
                   children: [
                     Container(
-                      height: 600.h,
+                      height: 800.h,
                       width: 200.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
@@ -51,18 +51,14 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
                       ),
                       child: Column(
                         children: [
-                          const SizedBox(
-                            height: 20,
-                          ),
+                          SizedBox(height: 20.h),
                           const Text(
                             'Upload Image!',
                             style: TextStyle(fontSize: 32),
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
+                          SizedBox(height: 20.h),
                           Container(
-                            height: 200,
+                            height: 200.h,
                             // color: Colors.amber,
                             decoration: BoxDecoration(
                                 border:
@@ -83,11 +79,9 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
                                     ),
                                   ),
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
+                          SizedBox(height: 30.h),
                           Container(
-                            width: 200,
+                            width: 250.w,
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
@@ -118,11 +112,9 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
                                   style: TextStyle(color: kwhite),
                                 )),
                           ),
-                          const SizedBox(
-                            height: 30,
-                          ),
+                          SizedBox(height: 50.h),
                           Container(
-                            width: 250,
+                            width: 300.w,
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
@@ -192,7 +184,9 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
     // Get URL?????????????????????????
     final snapshot = await uploadTask!.whenComplete(() {});
     final urlDownload = await snapshot.ref.getDownloadURL();
-    Get.off(AddProductDetails(imagepath: urlDownload,));
+    Get.off(AddProductDetails(
+      imagepath: urlDownload,
+    ));
     log("Download Link : $urlDownload");
     setState(() {
       uploadTask = null;
@@ -206,7 +200,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
           final data = snapshot.data!;
           double progress = data.bytesTransferred / data.totalBytes;
           return SizedBox(
-            height: 50,
+            height: 50.h,
             child: Stack(
               fit: StackFit.expand,
               children: [
@@ -225,12 +219,11 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
             ),
           );
         } else {
-          return const SizedBox(
-            height: 50,
-          );
+          return SizedBox(height: 50.h);
         }
       });
 }
+
 ////////////////////////////////
 //////////////////////////////////
 class DesignTwo extends StatelessWidget {
@@ -243,12 +236,11 @@ class DesignTwo extends StatelessWidget {
     return Positioned(
       top: 500,
       child: Container(
-        height: 200,
-        width: 200,
+        height: 200.h,
+        width: 200.w,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color:
-              const Color.fromARGB(255, 59, 10, 255).withOpacity(0.7),
+          color: const Color.fromARGB(255, 59, 10, 255).withOpacity(0.7),
         ),
         child: BackdropFilter(
           filter: ImageFilter.blur(
@@ -256,8 +248,8 @@ class DesignTwo extends StatelessWidget {
             sigmaY: 200,
           ),
           child: Container(
-            height: 200,
-            width: 200,
+            height: 200.h,
+            width: 200.w,
             color: Colors.transparent,
           ),
         ),

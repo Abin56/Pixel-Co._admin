@@ -94,7 +94,7 @@ List<IconData> icons = [
 ];
 List screen = [
    ScreenUserManagement(),
-  ScreenProductMangement(),
+  ScreenProductMangement(id: ''),
   ScreenStatitcsAndEarnings(),
   ScreenOfferManagement(),
   ScreenCategoryManagement(),

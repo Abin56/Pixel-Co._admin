@@ -12,7 +12,7 @@ String addProductModelToJson(AddProductModel data) =>
 
 class AddProductModel {
   AddProductModel({
-    required this.id,
+   this.id,
     required this.productImage,
     required this.productName,
     required this.price,
@@ -22,7 +22,7 @@ class AddProductModel {
     this.available,
   });
 
-  String id;
+  String? id;
   String productImage;
   String productName;
   String price;
@@ -34,7 +34,7 @@ class AddProductModel {
 
   factory AddProductModel.fromJson(Map<String, dynamic> json) =>
       AddProductModel(
-        id: json["id"],
+        id: json["id"]?? '',
         productImage: json["ProductImage"],
         productName: json["productName"],
         price: json["Price"],
