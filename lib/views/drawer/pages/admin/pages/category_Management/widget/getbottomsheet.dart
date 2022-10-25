@@ -52,19 +52,12 @@ getCategoryBottomSheet({
                     //
                     onPressed: () async {
                       final categoryname = textController.text.trim();
-                      // final categoryImage =
-                      //     bottomController.pickedfile!.path!;
                       if (categoryname.isEmpty) {
                         Get.snackbar("Error", "Cateogry field empty",
                             backgroundColor: Colors.red, colorText: kwhite);
                       } else {
                         await AddCategoryToFireBase().addCategory(categoryname);
-                        // Get.back();
-
-                        // await Get.offAll(ScreenCategoryManagement());
                       }
-                      // bottomController.update();
-                      // await bottomController.clearPicked();
                     },
                     icon: const Icon(Icons.add),
                     label: const Text(

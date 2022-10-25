@@ -60,22 +60,6 @@ class ScreenLogin extends StatelessWidget {
               SizedBox(
                 height: 27.h,
               ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     // Get.offAll(ScreenSignUp());
-              //   },
-              //   // ignore: sort_child_properties_last
-              //   child: const Text(
-              //     'CREATE AN ACCOUNT',
-              //     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              //   ),
-              //   style: ElevatedButton.styleFrom(
-              //       // ignore: deprecated_member_use
-              //       primary: const Color.fromARGB(255, 255, 153, 0),
-              //       fixedSize: const Size(400, 70),
-              //       shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(50))),
-              // ),
             ],
           ),
         ),

@@ -5,15 +5,17 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:pixels_admin/controller/getx/getx.dart';
 import 'package:pixels_admin/model/category_model.dart';
+import 'package:pixels_admin/views/drawer/pages/admin/pages/category_Management/widget/delete_category.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/category_Management/widget/getbottomsheet.dart';
 import '../../../../../color/color.dart';
 
 //
 
 class ScreenCategoryManagement extends StatelessWidget {
+  var id;
   final homecontroller = Get.put(Controllers());
 
-  ScreenCategoryManagement({super.key});
+  ScreenCategoryManagement({required this.id, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +60,9 @@ class ScreenCategoryManagement extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: GestureDetector(
-                                  onTap: () {
-                                    // log(homecontroller.imageList[index].toString());
-                                    // Get.offAll(
-                                    //   getCategoryBottomSheet(
-                                    //     context: context,
-                                    //     getimagePath: homecontroller.imageList[index],
-                                    //   ),
-                                    // );
+                                  onTap: () async {
+                                    await deleteCategory(
+                                        context: context, id: data.id);
                                   },
                                   child: Container(
                                     height: 100,

@@ -8,7 +8,7 @@ import 'package:pixels_admin/views/widget/neumorphism_widget.dart';
 // ignore: must_be_immutable
 class ListContainerWidget extends StatelessWidget {
   String text;
-  int? index;
+
   var colorindex;
   ListContainerWidget({
     super.key,

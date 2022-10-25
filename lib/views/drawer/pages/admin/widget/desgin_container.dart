@@ -30,7 +30,7 @@ class ContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(screen[index]),
+      onTap: () => Get.offAll(screen[index]),
       child: Container(
         height: 500,
         width: double.infinity,
@@ -93,11 +93,11 @@ List<IconData> icons = [
   Icons.admin_panel_settings_outlined
 ];
 List screen = [
-   ScreenUserManagement(),
+  ScreenUserManagement(),
   ScreenProductMangement(id: ''),
   ScreenStatitcsAndEarnings(),
   ScreenOfferManagement(),
-  ScreenCategoryManagement(),
+  ScreenCategoryManagement(id: ''),
   ScreenCoupenManagement(),
   ScreenAdminProfile(),
 ];

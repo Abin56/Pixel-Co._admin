@@ -48,7 +48,9 @@ class EditandDelete extends StatelessWidget {
                   ),
                   child: TextButton.icon(
                       onPressed: () async {
-                        Get.off(UpdateScreen());
+                        Get.off(UpdateScreen(
+                          id: id,
+                        ));
                       },
                       icon: const Icon(
                         Icons.edit,
@@ -80,8 +82,8 @@ class EditandDelete extends StatelessWidget {
                   ),
                   child: TextButton.icon(
                       onPressed: () async {
+                        log(id);
                         deleteProduct(id);
-                        print(id);
                       },
                       icon: const Icon(
                         Icons.delete,
@@ -110,7 +112,41 @@ deleteProduct(id) async {
   Fluttertoast.showToast(msg: "Deleting....");
 }
 
-updateProduct(id) {
-  // final firebase =
-  // FirebaseFirestore.instance.collection("ProductList").doc(id).update('');
+updateDetails({required String id}) async {
+  final newname = edit_productNameController.text.trim();
+  final newprice = edit_priceontroller.text.trim();
+  final newquantity = edit_quantityController.text.trim();
+  try {
+    final data =
+        await FirebaseFirestore.instance.collection("ProductList").doc(id);
+//
+    if (newname.isNotEmpty && newprice.isEmpty && newquantity.isEmpty) {
+      await data.update({"productName": newname});
+      //
+    } else if (newprice.isNotEmpty && newname.isEmpty && newquantity.isEmpty) {
+      await data.update({"Price": newprice});
+      //
+    } else if (newquantity.isNotEmpty && newname.isEmpty && newprice.isEmpty) {
+      await data.update({"quantity": newquantity});
+      //
+    } else if (newname.isNotEmpty &&
+        newprice.isNotEmpty &&
+        newquantity.isEmpty) {
+      await data.update({"productName": newname, "Price": newprice});
+      //
+    } else if (newname.isEmpty &&
+        newprice.isNotEmpty &&
+        newquantity.isNotEmpty) {
+      await data.update({"Price": newprice, "quantity": newquantity});
+    }
+    //
+    else if (newname.isNotEmpty &&
+        newprice.isNotEmpty &&
+        newquantity.isNotEmpty) {
+      await data.update(
+          {"productName": newname, "Price": newprice, "quantity": newquantity});
+    }
+  } on FirebaseException catch (e) {
+    log(e.message.toString());
+  }
 }

@@ -5,9 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:pixels_admin/controller/getx/getx.dart';
+import 'package:pixels_admin/views/drawer/drawer.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/detail_product.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/edit_and_delete.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/upload_imagetofirebase.dart';
+import 'package:pixels_admin/views/drawer/pages/admin/screen_admin.dart';
 import '../../../../../../model/add_allProductstofirebase.dart';
 import '../../../../../color/color.dart';
 
@@ -28,6 +30,11 @@ class ScreenProductMangement extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: const Text("All Product"),
+          leading: IconButton(
+              onPressed: () {
+                Get.offAll(DrawerWidget());
+              },
+              icon: Icon(Icons.arrow_back)),
           centerTitle: true,
           brightness: Brightness.dark),
       body: StreamBuilder(
