@@ -30,7 +30,7 @@ class ContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.offAll(screen[index]),
+      onTap: () => Get.to(screen[index]),
       child: Container(
         height: 500,
         width: double.infinity,

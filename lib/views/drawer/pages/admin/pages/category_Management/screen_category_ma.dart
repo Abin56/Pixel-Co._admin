@@ -5,6 +5,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:pixels_admin/controller/getx/getx.dart';
 import 'package:pixels_admin/model/category_model.dart';
+import 'package:pixels_admin/views/drawer/drawer.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/category_Management/widget/delete_category.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/category_Management/widget/getbottomsheet.dart';
 import '../../../../../color/color.dart';
@@ -24,6 +25,11 @@ class ScreenCategoryManagement extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+            // leading: IconButton(
+            //     onPressed: () {
+            //       Get.back();
+            //     },
+            //     icon: Icon(Icons.arrow_back)),
           title: const Text("Category Management"),
           centerTitle: true,
           brightness: Brightness.dark),

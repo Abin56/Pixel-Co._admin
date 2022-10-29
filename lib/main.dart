@@ -68,9 +68,9 @@ class MyApp extends StatelessWidget {
                     if (state is AuthLogInState) {
                       return DrawerWidget();
                     } else if (state is AuthLogOutState) {
-                      return ScreenSignIn();
+                      return const ScreenSignIn();
                     } else {
-                      return SplashScreen();
+                      return const SplashScreen();
                     }
                   },
                 )),

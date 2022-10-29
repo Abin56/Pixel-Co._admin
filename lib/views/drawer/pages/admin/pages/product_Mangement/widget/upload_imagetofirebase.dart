@@ -160,7 +160,8 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
           ],
         ));
   }
-
+//  PlatformFile? pickeimagefile;
+//   UploadTask? uploadTask;
   Future selectGallery() async {
     final result = await FilePicker.platform.pickFiles();
     if (result == null) {
@@ -221,11 +222,13 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
         } else {
           return SizedBox(height: 50.h);
         }
-      });
+      },);
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////
-//////////////////////////////////
+////////////////////////////////////
+///
 class DesignTwo extends StatelessWidget {
   const DesignTwo({
     Key? key,
