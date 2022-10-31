@@ -184,5 +184,3 @@ class UpdateScreenDesgin extends StatelessWidget {
     );
   }
 }
-
-

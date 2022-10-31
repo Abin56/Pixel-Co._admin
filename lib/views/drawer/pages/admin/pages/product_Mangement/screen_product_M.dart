@@ -9,7 +9,6 @@ import 'package:pixels_admin/views/drawer/drawer.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/detail_product.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/edit_and_delete.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/upload_imagetofirebase.dart';
-import 'package:pixels_admin/views/drawer/pages/admin/screen_admin.dart';
 import '../../../../../../model/add_allProductstofirebase.dart';
 import '../../../../../color/color.dart';
 
