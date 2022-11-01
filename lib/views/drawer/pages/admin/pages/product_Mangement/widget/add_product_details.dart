@@ -178,14 +178,12 @@ class AddProductDetails extends StatelessWidget {
                                         productImage: imagepath,
                                         productName: productName,
                                         price: price,
-                                        category: dropDownValue!,
+                                        category: dropDownValue!["id"],
                                         quantity: quantity,
                                         discription: discription,
                                         available: true);
                                     await AddProductDetailsToFireBase()
                                         .addProductController(addtoFireBase);
-                                  
-
                                   } else {
                                     return;
                                   }

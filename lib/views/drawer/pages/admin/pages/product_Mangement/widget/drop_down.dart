@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-String? dropDownValue;
+var dropDownValue;
 
 class DropDownButton extends StatefulWidget {
   const DropDownButton({Key? key}) : super(key: key);
@@ -26,7 +28,7 @@ class _DropDownButtonState extends State<DropDownButton> {
             return DropdownButtonFormField(
               hint: dropDownValue == null
                   ? const Text("select category")
-                  : Text(dropDownValue!),
+                  : Text(dropDownValue!["CategoryName"]),
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.green, width: 0.5),
@@ -47,9 +49,15 @@ class _DropDownButtonState extends State<DropDownButton> {
                 },
               ).toList(),
               onChanged: (val) {
+                var categoryIDObject = snapshot.data!.docs
+                    .where((element) => element["CategoryName"] == val)
+                    .toList()
+                    .first;
+                log(categoryIDObject["id"]);
+
                 setState(
                   () {
-                    dropDownValue = val.toString();
+                    dropDownValue = categoryIDObject;
                   },
                 );
               },

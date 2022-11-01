@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,12 +14,14 @@ import 'package:pixels_admin/views/home/screen_home.dart';
 List<ScreenHiddenDrawer> pages = [];
 
 class Controllers extends GetxController {
-
+  var list = [];
+  Map<String, dynamic>? categoryCollections;
   // String? pickedImage;
   // String? pickedimagefromGallery;
   @override
   void onInit() {
     drawerMenulist();
+    fetchingCategory();
 
     super.onInit();
   }
@@ -31,7 +36,7 @@ class Controllers extends GetxController {
             selectedStyle: GoogleFonts.montserrat(
                 fontSize: 30, fontWeight: FontWeight.w700),
           ),
-         const ScreenHome()),
+          const ScreenHome()),
       ScreenHiddenDrawer(
           ItemHiddenMenu(
             name: 'Admin',
@@ -90,5 +95,17 @@ class Controllers extends GetxController {
     update();
   }
 
- 
+  fetchingCategory() async {
+    final data = await FirebaseFirestore.instance
+        .collection("allCategory")
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        list.add(element["id"]);
+      });
+    });
+
+    categoryCollections = data;
+    log(list.toString());
+  }
 }

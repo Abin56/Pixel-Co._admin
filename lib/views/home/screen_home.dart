@@ -9,6 +9,8 @@ import 'package:pixels_admin/views/order_screen/orderlist_screen.dart';
 final homeController = Get.put(Controllers());
 
 class ScreenHome extends StatelessWidget {
+
+
   const ScreenHome({super.key});
 
   @override
@@ -62,6 +64,8 @@ class ScreenHome extends StatelessWidget {
           );
         });
   }
+
+  
 }
 
 //List of screens

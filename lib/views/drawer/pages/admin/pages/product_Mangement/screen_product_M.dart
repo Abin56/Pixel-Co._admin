@@ -27,6 +27,7 @@ class ScreenProductMangement extends StatelessWidget {
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
     int columnCount = 2;
+    //
 
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +58,13 @@ class ScreenProductMangement extends StatelessWidget {
                       //
                       final data = AddProductModel.fromJson(
                           snapshot.data!.docs[index].data());
+
                       //
+                      final catdata = homecontroller.categoryCollections!
+                          .forEach((key, value) {
+                        log(value);
+                      });
+
                       return AnimationConfiguration.staggeredGrid(
                         position: index,
                         duration: const Duration(milliseconds: 500),
@@ -139,7 +146,7 @@ class ScreenProductMangement extends StatelessWidget {
                                                   style: TextStyle(
                                                       color: Colors.grey)),
                                               Text(
-                                                data.category,
+                                                '',
                                                 style: const TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 7),
