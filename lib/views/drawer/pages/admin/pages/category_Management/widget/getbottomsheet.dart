@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:pixels_admin/controller/firebase/add_category.dart';
-import 'package:pixels_admin/controller/getx/getx.dart';
-import 'package:pixels_admin/views/home/screen_home.dart';
 import '../../../../../../color/color.dart';
-import '../screen_category_ma.dart';
+
 
 getCategoryBottomSheet({
   required context,

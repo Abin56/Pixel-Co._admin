@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'dart:developer';
 import 'dart:io';
 import 'dart:ui';
@@ -6,8 +8,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:pixels_admin/controller/getx/getImage.dart';
 import 'package:pixels_admin/views/color/color.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/add_product_details.dart';
 

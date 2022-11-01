@@ -1,16 +1,12 @@
 import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pixels_admin/views/color/color.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/widget/desgin_container.dart';
 
 class AdminPanelScreen extends StatelessWidget {
   const AdminPanelScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {  
+  Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.black,
       // extendBody: true,
@@ -25,7 +21,7 @@ class AdminPanelScreen extends StatelessWidget {
               crossAxisSpacing: 15,
               childAspectRatio: 1.2 / 1.4,
               shrinkWrap: true,
-              children: List.generate(7, (index) {
+              children: List.generate(6, (index) {
                 return Builder(builder: (context) {
                   var rnd = Random();
                   var r = 1 + rnd.nextInt(5 - 1);

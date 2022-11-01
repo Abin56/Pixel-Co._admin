@@ -1,6 +1,9 @@
+// ignore_for_file: must_be_immutable, prefer_typing_uninitialized_variables, sort_child_properties_last
+
 import 'package:flutter/material.dart';
-import 'package:pixels_admin/views/color/color.dart';
-import 'package:pixels_admin/views/drawer/pages/admin/widget/desgin_container.dart';
+
+import '../color/color.dart';
+
 
 class ButtonTapped extends StatelessWidget {
   // int? index;
@@ -10,7 +13,7 @@ class ButtonTapped extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       child: Container(
         padding: const EdgeInsets.all(20),
         child: Icon(
@@ -23,7 +26,7 @@ class ButtonTapped extends StatelessWidget {
         shape: BoxShape.circle,
         color: Colors.grey[300],
         boxShadow: [
-          BoxShadow(
+          const BoxShadow(
               color: kwhite,
               offset: Offset(4.0, 4.0),
               blurRadius: 15.0,
@@ -58,7 +61,7 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Icon(
         icondata,
         size: 37,
@@ -70,12 +73,12 @@ class ButtonWidget extends StatelessWidget {
         boxShadow: [
           BoxShadow(
               color: Colors.grey[600]!,
-              offset: Offset(4.0, 4.0),
+              offset: const Offset(4.0, 4.0),
               blurRadius: 15.0,
               spreadRadius: 1.0),
-          BoxShadow(
+          const BoxShadow(
               color: kwhite,
-              offset: const Offset(-4.0, -4.0),
+              offset: Offset(-4.0, -4.0),
               blurRadius: 15.0,
               spreadRadius: 1.0),
         ],

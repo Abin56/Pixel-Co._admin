@@ -1,18 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: must_be_immutable, avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixels_admin/controller/firebase/add_AllProduct.dart';
 import 'package:pixels_admin/model/add_allProductstofirebase.dart';
 import 'package:pixels_admin/model/category_model.dart';
-import 'package:pixels_admin/views/drawer/pages/admin/pages/category_Management/widget/getbottomsheet.dart';
-import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/screen_product_M.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/drop_down.dart';
-
 import '../../../../../../color/color.dart';
 import '../../../../../../core/const.dart';
 

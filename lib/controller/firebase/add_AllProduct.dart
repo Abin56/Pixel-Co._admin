@@ -1,10 +1,11 @@
+// ignore_for_file: file_names
+
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixels_admin/model/add_allProductstofirebase.dart';
-
 import '../../views/color/color.dart';
 import '../../views/drawer/pages/admin/pages/product_Mangement/screen_product_M.dart';
 
@@ -16,6 +17,7 @@ class AddProductDetailsToFireBase {
           .collection("ProductList")
           .add(productModel.toJson())
           .then((value) async {
+        // ignore: avoid_print
         print('Geting idddddddddddddddddddddddddddd${value.id.toString()}');
 
         value.id;

@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixels_admin/model/category_model.dart';
 import 'package:pixels_admin/views/color/color.dart';
-import 'package:pixels_admin/views/drawer/pages/admin/pages/category_Management/screen_category_ma.dart';
-
 class AddCategoryToFireBase {
   final fireBase = FirebaseFirestore.instance;
   //
@@ -36,7 +34,7 @@ class AddCategoryToFireBase {
     } on FirebaseException catch (e) {
       log(e.message.toString());
     }
-    ;
+    
   }
   //
 

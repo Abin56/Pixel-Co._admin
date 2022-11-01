@@ -1,8 +1,9 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixels_admin/views/color/color.dart';
-import 'package:pixels_admin/views/core/const.dart';
 import 'package:pixels_admin/views/widget/neumorphism_widget.dart';
 
 // ignore: must_be_immutable

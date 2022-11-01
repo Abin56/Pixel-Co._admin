@@ -1,11 +1,11 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable, no_leading_underscores_for_local_identifiers, deprecated_member_use
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:pixels_admin/controller/getx/getx.dart';
 import 'package:pixels_admin/model/category_model.dart';
-import 'package:pixels_admin/views/drawer/drawer.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/category_Management/widget/delete_category.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/category_Management/widget/getbottomsheet.dart';
 import '../../../../../color/color.dart';

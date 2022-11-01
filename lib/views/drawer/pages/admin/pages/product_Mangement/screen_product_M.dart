@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables, must_be_immutable, no_leading_underscores_for_local_identifiers, deprecated_member_use, prefer_const_constructors
+
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

@@ -1,12 +1,8 @@
-import 'dart:developer';
+// ignore_for_file: non_constant_identifier_names, must_be_immutable
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pixels_admin/model/add_allProductstofirebase.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/edit_and_delete.dart';
-
 import '../../../../../../color/color.dart';
 
 final edit_productNameController = TextEditingController();

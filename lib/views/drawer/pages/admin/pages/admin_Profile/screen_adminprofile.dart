@@ -46,7 +46,7 @@ class ScreenAdminProfile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 100,
                     // backgroundImage: FileImage(File(dataList.image!)),
                   ),

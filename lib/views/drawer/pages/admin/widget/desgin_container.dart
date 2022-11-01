@@ -1,4 +1,4 @@
-import 'dart:ui';
+// ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,14 +12,12 @@ import 'package:pixels_admin/views/drawer/pages/admin/pages/offer_Management/scr
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/screen_product_M.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/statitcs%20and%20Earnings/screen_statitcsEarnings.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/user_Mangement/screen_userManagement.dart';
-import 'package:pixels_admin/views/widget/neumorphism_widget.dart';
 
 // ignore: must_be_immutable
 class ContainerWidget extends StatelessWidget {
   int index;
   var color;
 
-  // ignore: prefer_typing_uninitialized_variables
 
   ContainerWidget({
     required this.index,
@@ -80,7 +78,7 @@ List<String> textstring = [
   'Statitics and Earnings',
   'Offer management',
   'Category Management',
-  'Coupen Management',
+  // 'Coupen Management',
   'Admin Profile',
 ];
 List<IconData> icons = [
@@ -93,13 +91,13 @@ List<IconData> icons = [
   Icons.admin_panel_settings_outlined
 ];
 List screen = [
-  ScreenUserManagement(),
+  const ScreenUserManagement(),
   ScreenProductMangement(id: ''),
-  ScreenStatitcsAndEarnings(),
-  ScreenOfferManagement(),
+  const ScreenStatitcsAndEarnings(),
+  const ScreenOfferManagement(),
   ScreenCategoryManagement(id: ''),
-  ScreenCoupenManagement(),
-  ScreenAdminProfile(),
+  const ScreenCoupenManagement(),
+  const ScreenAdminProfile(),
 ];
 //  GestureDetector(
 //           onTap: () {

@@ -1,5 +1,6 @@
+// ignore_for_file: file_names, library_private_types_in_public_api, use_key_in_widget_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -67,7 +68,7 @@ class ScreenUserManagement extends StatelessWidget {
               itemCount: snapshot.data!.docs.length,
             );
           } else {
-            return Text('No More Data');
+            return const Text('No More Data');
           }
         },
       )),
@@ -83,7 +84,7 @@ class MyCustomWidget extends StatefulWidget {
 class _MyCustomWidgetState extends State<MyCustomWidget>
     with TickerProviderStateMixin {
   bool isChecked = false;
-  Duration _duration = Duration(milliseconds: 370);
+  final Duration _duration = const Duration(milliseconds: 370);
   late Animation<Alignment> _animation;
   late AnimationController _animationController;
 
@@ -133,10 +134,10 @@ class _MyCustomWidgetState extends State<MyCustomWidget>
             child: Container(
               width: 77.w,
               height: 38.h,
-              padding: EdgeInsets.fromLTRB(0, 6, 0, 6),
+              padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
               decoration: BoxDecoration(
                 color: isChecked ? Colors.green : Colors.red,
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(99),
                 ),
                 boxShadow: [
@@ -145,7 +146,7 @@ class _MyCustomWidgetState extends State<MyCustomWidget>
                         ? Colors.green.withOpacity(0.6)
                         : Colors.red.withOpacity(0.6),
                     blurRadius: 15,
-                    offset: Offset(0, 8),
+                    offset: const Offset(0, 8),
                   )
                 ],
               ),
@@ -169,7 +170,7 @@ class _MyCustomWidgetState extends State<MyCustomWidget>
                       child: Container(
                         width: 40.w,
                         height: 40.h,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.white,
                         ),

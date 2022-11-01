@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Future<dynamic> deleteCategory({required context, required id}) async {
-  print("calling");
   return showDialog(
     context: context,
     builder: (context) {
@@ -20,14 +19,14 @@ Future<dynamic> deleteCategory({required context, required id}) async {
               onPressed: () {
                 Get.back();
               },
-              child: Text("Cancel")),
+              child: const Text("Cancel")),
           TextButton(
               onPressed: () async {
                 log(id);
 
                 delteCategoryformFireBase(id);
               },
-              child: Text("Ok")),
+              child: const Text("Ok")),
         ],
       );
     },

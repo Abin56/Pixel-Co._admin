@@ -9,7 +9,7 @@ import 'package:pixels_admin/views/order_screen/orderlist_screen.dart';
 final homeController = Get.put(Controllers());
 
 class ScreenHome extends StatelessWidget {
-  ScreenHome({super.key});
+  const ScreenHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +37,8 @@ class ScreenHome extends StatelessWidget {
                   activeColor: Colors.white,
                   tabBackgroundColor: Colors.grey.shade800,
                   gap: 8,
-                  padding: EdgeInsets.all(16),
-                  tabs: [
+                  padding: const EdgeInsets.all(16),
+                  tabs: const [
                     // GButton(
                     //   icon: Icons.home,
                     //   text: 'Home',
@@ -67,7 +67,7 @@ class ScreenHome extends StatelessWidget {
 //List of screens
 List screen = [
   // ScreenHome(),
-  OrderListScreen(),
-  ChatHubScreen(),
-  DeliveryScreen(),
+  const OrderListScreen(),
+  const ChatHubScreen(),
+  const DeliveryScreen(),
 ];

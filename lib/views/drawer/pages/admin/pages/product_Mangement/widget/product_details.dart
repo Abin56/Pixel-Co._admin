@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/add_product_details.dart';
 
 getBottomSheet({required context}) {
   return showModalBottomSheet(
@@ -28,13 +26,13 @@ getBottomSheet({required context}) {
                       style: GoogleFonts.montserrat(
                           fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    Text('Alpha 7s'),
-                    Text(
+                    const Text('Alpha 7s'),
+                    const Text(
                       'Rs 333,990',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text('Discripton'),
-                    Text(
+                    const Text('Discripton'),
+                    const Text(
                         'Designed for professionals, the α7S III builds on the strengths of the S series such as high sensitivity and wide dynamic range while providing pro features like enhanced AF, optical image stabilisation and 4K 120p35 recording. Incorporating a powerful new engine in its compact body, the camera delivers a wide range of visual experiences.'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -44,7 +42,7 @@ getBottomSheet({required context}) {
                           height: 50.h,
                           child: ElevatedButton.icon(
                             onPressed: () {},
-                            icon: Icon(Icons.edit),
+                            icon: const Icon(Icons.edit),
                             label: Text(
                               'Edit',
                               style: GoogleFonts.montserrat(
@@ -72,7 +70,7 @@ getBottomSheet({required context}) {
                           height: 50.h,
                           child: ElevatedButton.icon(
                             onPressed: () {},
-                            icon: Icon(Icons.delete),
+                            icon: const Icon(Icons.delete),
                             label: Text(
                               'Remove',
                               style: GoogleFonts.montserrat(

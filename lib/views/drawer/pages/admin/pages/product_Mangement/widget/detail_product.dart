@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,10 +39,10 @@ class DetailScreenofProduct extends StatelessWidget {
                       backgroundImage: NetworkImage(image),
                     ),
               productname.isEmpty
-                  ? CircularProgressIndicator()
+                  ? const CircularProgressIndicator()
                   : Text(
                       productname,
-                      style: TextStyle(fontSize: 40, color: kwhite),
+                      style: const TextStyle(fontSize: 40, color: kwhite),
                     ),
               SizedBox(height: 6.h),
               Row(

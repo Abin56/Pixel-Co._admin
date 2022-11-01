@@ -2,6 +2,8 @@
 //
 //     final addProductModel = addProductModelFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 AddProductModel addProductModelFromJson(String str) =>

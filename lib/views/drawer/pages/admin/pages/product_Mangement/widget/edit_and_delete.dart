@@ -1,13 +1,12 @@
-import 'dart:developer';
+// ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable, unused_local_variable, await_only_futures
 
+import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/update_screen.dart';
-
 import '../../../../../../color/color.dart';
 
 class EditandDelete extends StatelessWidget {

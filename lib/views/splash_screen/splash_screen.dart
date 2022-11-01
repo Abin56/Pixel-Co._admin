@@ -46,5 +46,5 @@ class SplashScreen extends StatelessWidget {
 
 Future<void> splashNavigator(context) async {
   await Future.delayed(const Duration(seconds: 5));
-  Get.offAll(ScreenLogin());
+  Get.offAll(const ScreenLogin());
 }

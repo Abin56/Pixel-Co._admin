@@ -1,6 +1,6 @@
+// ignore_for_file: file_names, must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pixels_admin/views/color/color.dart';
 
@@ -40,11 +40,11 @@ class GlassContainer extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
-            Container(
-              height: 100,
-              width: 130,
+            SizedBox(
+              height: 100.h,
+              width: 130.w,
               child: Image.network(image),
             ),
           ],

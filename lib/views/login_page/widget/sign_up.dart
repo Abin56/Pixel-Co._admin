@@ -6,7 +6,7 @@ import 'package:sign_button/sign_button.dart';
 import '../../drawer/drawer.dart';
 
 class ScreenSignUp extends StatefulWidget {
-  ScreenSignUp({super.key});
+  const ScreenSignUp({super.key});
 
   @override
   State<ScreenSignUp> createState() => _ScreenSignUpState();
