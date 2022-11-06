@@ -6,6 +6,7 @@ import '../color/color.dart';
 
 
 class ButtonTapped extends StatelessWidget {
+
   // int? index;
   var icondata;
   ButtonTapped({required this.icondata, super.key});

@@ -15,10 +15,11 @@ List<ScreenHiddenDrawer> pages = [];
 
 class Controllers extends GetxController {
   var list = [];
-  Map<String, dynamic>? categoryCollections;
+  // Map<String, dynamic>? categoryCollections;
+  List<Map<String, dynamic>> categoryCollections = [];
   // String? pickedImage;
   // String? pickedimagefromGallery;
-  @override
+  @override 
   void onInit() {
     drawerMenulist();
     fetchingCategory();
@@ -95,17 +96,33 @@ class Controllers extends GetxController {
     update();
   }
 
+  // fetchingCategory() async {
+  //   final data = await FirebaseFirestore.instance
+  //       .collection("allCategory")
+  //       .get()
+  //       .then((value) {
+  //     value.docs.forEach((element) {
+  //       list.add(element["id"]);
+  //     });
+  //   });
+
+  //   categoryCollections = data;
+  //   log(list.toString());
+  // }
   fetchingCategory() async {
-    final data = await FirebaseFirestore.instance
+    List<Map<String, dynamic>> list = [];
+    await FirebaseFirestore.instance
         .collection("allCategory")
         .get()
         .then((value) {
       value.docs.forEach((element) {
-        list.add(element["id"]);
+        list.add(element.data());
       });
     });
 
-    categoryCollections = data;
-    log(list.toString());
-  }
+    categoryCollections = list;
+    log(list.toString(),name: "calling");
+    update();
+    return list;
+}
 }
