@@ -40,13 +40,9 @@ class ScreenProductMangement extends StatelessWidget {
           centerTitle: true,
           brightness: Brightness.dark),
       body: StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection("allCategory")
-              .doc()
-              .collection("AllProducts")
-              .snapshots(),
+          stream: controller.getProductStream(),
           builder: (BuildContext context,
-              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+              AsyncSnapshot<List<AddProductModel>> snapshot) {
             //
             if (snapshot.hasData) {
               return controller.categoryCollections.isEmpty
@@ -58,15 +54,17 @@ class ScreenProductMangement extends StatelessWidget {
                         padding: EdgeInsets.all(_w / 60),
                         crossAxisCount: columnCount,
                         children: List.generate(
-                          snapshot.data!.docs.length,
+                          snapshot.data!.length,
                           (int index) {
                             //
-                            final data = AddProductModel.fromJson(
-                                snapshot.data!.docs[index].data());
-
-                            //
-                            var catdata = controller.categoryCollections.where(
-                                (e) => e["CategoryName"] == data.category);
+                            final data = snapshot.data![index];
+                            String catData = "No category"; 
+                            for (Map<String, dynamic> map
+                                in controller.categoryCollections) {
+                              if (map["id"] == data.category) {
+                                catData = map["CategoryName"];
+                              }
+                            }
 
                             return AnimationConfiguration.staggeredGrid(
                               position: index,
@@ -147,8 +145,7 @@ class ScreenProductMangement extends StatelessWidget {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                        "Category: ${catdata.isNotEmpty ? catdata.first.values.first : 'cat change in db'}",
+                                                    Text("Category: $catData",
                                                         style: TextStyle(
                                                             color:
                                                                 Colors.grey)),
@@ -211,7 +208,6 @@ class ScreenProductMangement extends StatelessWidget {
           Get.to(UploadImageScreen());
         },
         child: const Icon(Icons.add),
-      ),
-    );
-  }
+     ),
+);}
 }

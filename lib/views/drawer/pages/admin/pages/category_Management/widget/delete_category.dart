@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pixels_admin/views/home/screen_home.dart';
 
 Future<dynamic> deleteCategory({required context, required id}) async {
   return showDialog(
@@ -23,17 +24,14 @@ Future<dynamic> deleteCategory({required context, required id}) async {
           TextButton(
               onPressed: () async {
                 log(id);
-
-                delteCategoryformFireBase(id);
+                homeController.delteCategoryformFireBase(id).then((value) {
+                  Get.back();
+                  Get.snackbar("Deleted", '');
+                });
               },
               child: const Text("Ok")),
         ],
       );
     },
   );
-}
-
-delteCategoryformFireBase(String id) async {
-  log(id);
-  await FirebaseFirestore.instance.collection("allCategory").doc(id).delete();
 }

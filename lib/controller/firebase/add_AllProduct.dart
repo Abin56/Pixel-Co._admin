@@ -14,15 +14,13 @@ class AddProductDetailsToFireBase {
   Future addProductController(AddProductModel productModel) async {
     try {
       final firebase = FirebaseFirestore.instance;
-      final doc = await firebase
-          .collection("allCategory")
-          .doc(productModel.category)
-          .collection("AllProducts")
-          .doc();
+      final doc = await firebase.collection("AllProducts").doc();
       productModel.id = doc.id;
 
       doc.set(productModel.toJson()).then((value) async {
-        Get.offAll(AdminPanelScreen());
+        Get.off(ScreenProductMangement(
+          id: doc.id,
+        ));
       });
       //     .then(
       //   (value) async {

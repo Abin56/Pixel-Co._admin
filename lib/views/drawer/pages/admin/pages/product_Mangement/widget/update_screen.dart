@@ -1,5 +1,8 @@
 // ignore_for_file: non_constant_identifier_names, must_be_immutable
 
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/pages/product_Mangement/widget/edit_and_delete.dart';
@@ -178,5 +181,44 @@ class UpdateScreenDesgin extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+updateDetails({required String id}) async {
+  final newname = edit_productNameController.text.trim();
+  final newprice = edit_priceontroller.text.trim();
+  final newquantity = edit_quantityController.text.trim();
+  try {
+    final data =
+        await FirebaseFirestore.instance.collection("AllProducts").doc(id);
+//
+    if (newname.isNotEmpty && newprice.isEmpty && newquantity.isEmpty) {
+      await data.update({"productName": newname});
+      //
+    } else if (newprice.isNotEmpty && newname.isEmpty && newquantity.isEmpty) {
+      await data.update({"Price": newprice});
+      //
+    } else if (newquantity.isNotEmpty && newname.isEmpty && newprice.isEmpty) {
+      await data.update({"quantity": newquantity});
+      //
+    } else if (newname.isNotEmpty &&
+        newprice.isNotEmpty &&
+        newquantity.isEmpty) {
+      await data.update({"productName": newname, "Price": newprice});
+      //
+    } else if (newname.isEmpty &&
+        newprice.isNotEmpty &&
+        newquantity.isNotEmpty) {
+      await data.update({"Price": newprice, "quantity": newquantity});
+    }
+    //
+    else if (newname.isNotEmpty &&
+        newprice.isNotEmpty &&
+        newquantity.isNotEmpty) {
+      await data.update(
+          {"productName": newname, "Price": newprice, "quantity": newquantity});
+    }
+  } on FirebaseException catch (e) {
+    log(e.message.toString());
   }
 }

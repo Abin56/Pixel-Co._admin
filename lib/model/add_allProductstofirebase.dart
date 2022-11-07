@@ -37,13 +37,13 @@ class AddProductModel {
   factory AddProductModel.fromJson(Map<String, dynamic> json) =>
       AddProductModel(
         id: json["id"] ?? '',
-        productImage: json["ProductImage"],
-        productName: json["productName"],
-        price: json["Price"],
-        category: json["Category"],
+        productImage: json["ProductImage"] ?? "",
+        productName: json["productName"] ?? "",
+        price: json["Price"] ?? "",
+        category: json["Category"] ?? "",
         quantity: json["quantity"],
-        discription: json["discription"],
-        available: json["available"],
+        discription: json["discription"] ?? "",
+        available: json["available"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {

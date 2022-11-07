@@ -1,12 +1,11 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
-// import 'package:image_picker/image_picker.dart';
+import 'package:pixels_admin/model/add_allProductstofirebase.dart';
 import 'package:pixels_admin/views/color/color.dart';
 import 'package:pixels_admin/views/drawer/pages/admin/screen_admin.dart';
 import 'package:pixels_admin/views/home/screen_home.dart';
@@ -14,17 +13,24 @@ import 'package:pixels_admin/views/home/screen_home.dart';
 List<ScreenHiddenDrawer> pages = [];
 
 class Controllers extends GetxController {
-  var list = [];
-  // Map<String, dynamic>? categoryCollections;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  List<Map<String, dynamic>> list1 = [];
   List<Map<String, dynamic>> categoryCollections = [];
-  // String? pickedImage;
-  // String? pickedimagefromGallery;
-  @override 
+  @override
   void onInit() {
     drawerMenulist();
     fetchingCategory();
 
     super.onInit();
+  }
+
+  Stream<List<AddProductModel>> getProductStream() {
+    final data =
+        FirebaseFirestore.instance.collection("AllProducts").snapshots();
+    final d = data.map((event) =>
+        event.docs.map((e) => AddProductModel.fromJson(e.data())).toList());
+    log(d.toString());
+    return d;
   }
 
   drawerMenulist() {
@@ -89,27 +95,13 @@ class Controllers extends GetxController {
     ];
   }
 
-  //BottomNavigation <><><><><><><><><
   int currentIndex = 0;
   currentindex(int index) {
     currentIndex = index;
     update();
   }
 
-  // fetchingCategory() async {
-  //   final data = await FirebaseFirestore.instance
-  //       .collection("allCategory")
-  //       .get()
-  //       .then((value) {
-  //     value.docs.forEach((element) {
-  //       list.add(element["id"]);
-  //     });
-  //   });
-
-  //   categoryCollections = data;
-  //   log(list.toString());
-  // }
-  fetchingCategory() async {
+  Future<List<Map<String, dynamic>>> fetchingCategory() async {
     List<Map<String, dynamic>> list = [];
     await FirebaseFirestore.instance
         .collection("allCategory")
@@ -119,10 +111,41 @@ class Controllers extends GetxController {
         list.add(element.data());
       });
     });
+    list1 = list;
+    log(list.toString());
 
     categoryCollections = list;
-    log(list.toString(),name: "calling");
+    log(list.toString(), name: "calling");
     update();
     return list;
-}
+  }
+
+  Future<void> addProduct(AddProductModel product, String docId) async {
+    try {
+      final productDocument = _db.collection("allProduct").doc(docId);
+
+      await productDocument.set(product.toJson());
+    } catch (e) {
+      Future.error('Something went Wrong please try again');
+    }
+  }
+
+  Future delteCategoryformFireBase(String id) async {
+    log(id);
+    await FirebaseFirestore.instance.collection("allCategory").doc(id).delete();
+
+    final data =
+        FirebaseFirestore.instance.collection("AllProducts").snapshots();
+    final d = data.map((event) =>
+        event.docs.map((e) => AddProductModel.fromJson(e.data())).toList());
+    List<AddProductModel> prod = await d.first;
+    for (var element in prod) {
+      if (element.category == id) {
+        await FirebaseFirestore.instance
+            .collection("AllProducts")
+            .doc(element.id)
+            .delete();
+      }
+    }
+  }
 }
