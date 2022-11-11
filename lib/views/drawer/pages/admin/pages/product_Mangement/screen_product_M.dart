@@ -58,7 +58,7 @@ class ScreenProductMangement extends StatelessWidget {
                           (int index) {
                             //
                             final data = snapshot.data![index];
-                            String catData = "No category"; 
+                            String catData = "No category";
                             for (Map<String, dynamic> map
                                 in controller.categoryCollections) {
                               if (map["id"] == data.category) {
@@ -126,11 +126,15 @@ class ScreenProductMangement extends StatelessWidget {
                                                 Row(
                                                   children: [
                                                     const Text(
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                       "Name: ",
                                                       style: TextStyle(
                                                           color: Colors.grey),
                                                     ),
                                                     Text(
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                       data.productName,
                                                       style: const TextStyle(
                                                           color: Colors.blue,
@@ -146,10 +150,14 @@ class ScreenProductMangement extends StatelessWidget {
                                                       MainAxisAlignment.start,
                                                   children: [
                                                     Text("Category: $catData",
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                         style: TextStyle(
                                                             color:
                                                                 Colors.grey)),
                                                     Text(
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                       '',
                                                       style: const TextStyle(
                                                           color: Colors.white,
@@ -160,12 +168,18 @@ class ScreenProductMangement extends StatelessWidget {
                                                 Row(
                                                   children: [
                                                     const Text("Price :",
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                         style: TextStyle(
+                                                            fontSize: 8,
                                                             color:
                                                                 Colors.grey)),
                                                     Text(
                                                       data.price,
                                                       style: const TextStyle(
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          fontSize: 8,
                                                           color: Color.fromARGB(
                                                               255,
                                                               23,
@@ -202,12 +216,13 @@ class ScreenProductMangement extends StatelessWidget {
             }
             //
           }),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey[800],
-        onPressed: () {
-          Get.to(UploadImageScreen());
-        },
-        child: const Icon(Icons.add),
-     ),
-);}
+      //   floatingActionButton: FloatingActionButton(
+      //     backgroundColor: Colors.grey[800],
+      //     onPressed: () {
+      //       Get.to(UploadImageScreen());
+      //     },
+      //     child: const Icon(Icons.add),
+      //  ),
+    );
+  }
 }

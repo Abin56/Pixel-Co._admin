@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
@@ -146,6 +147,22 @@ class Controllers extends GetxController {
             .doc(element.id)
             .delete();
       }
+    }
+  }
+
+  Future delteOfferProductformFireBase(String id) async {
+    log(id);
+    try {
+      await FirebaseFirestore.instance
+          .collection("OfferProduts")
+          .doc(id)
+          .delete()
+          .then((value) => Get.snackbar("Message", 'Deleted',
+              backgroundColor: Colors.red, colorText: Colors.white))
+          .then((value) => Fluttertoast.showToast(msg: "Deleting...."))
+          .then((value) => Get.back());
+    } on FirebaseException catch (e) {
+      log(e.message.toString());
     }
   }
 }

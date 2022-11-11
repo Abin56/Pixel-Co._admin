@@ -94,7 +94,7 @@ List screen = [
   const ScreenUserManagement(),
   ScreenProductMangement(id: ''),
   const ScreenStatitcsAndEarnings(),
-  const ScreenOfferManagement(),
+   ScreenOfferManagement(id: ''),
   ScreenCategoryManagement(id: ''),
   const ScreenCoupenManagement(),
   const ScreenAdminProfile(),
